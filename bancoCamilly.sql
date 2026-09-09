@@ -1,0 +1,45 @@
+CREATE DATABASE supermercadoFila;
+
+USE supermercadoFila;
+
+CREATE TABLE ENTRADA(
+id INT PRIMARY KEY AUTO_INCREMENT,
+quantPessoasE INT,
+dataHota DATETIME
+); 
+
+CREATE TABLE SAIDA(
+id INT PRIMARY KEY AUTO_INCREMENT,
+quantPessoasS INT,
+dataHota DATETIME
+);
+
+CREATE TABLE SENSORES_FILA(
+id INT PRIMARY KEY AUTO_INCREMENT,
+caixa INT,
+sensor_1 TINYINT,
+sensor_2 TINYINT,
+senosr_3 TINYINT,
+dataHora DATETIME
+);
+
+-- HISTÓRICO
+CREATE TABLE FREQUENCIA_FILA(
+id INT PRIMARY KEY AUTO_INCREMENT,
+caixa INT,
+sensor INT,
+quantidadeAtivacoes INT,
+Datas DATE
+CONSTRAINT Freq CHECK (sensor IN (1, 2, 3))
+);
+
+-- HISTÓRICO
+CREATE TABLE ALERTA(
+id INT PRIMARY KEY AUTO_INCREMENT,
+caixa INT,
+sensor INT,
+TipoFila VARCHAR(15),
+Mensagem VARCHAR(50),
+dataHora DATETIME,
+CONSTRAINT chkSensor CHECK (sensor IN (2, 3))
+);
